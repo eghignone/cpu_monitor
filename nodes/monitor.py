@@ -86,7 +86,9 @@ if __name__ == "__main__":
     rospy.on_shutdown(csv_writer.close)
 
   # tries to get 
-  this_ip = os.environ.get("ROS_IP")
+  this_ip = os.environ.get("ROS_HOSTNAME")
+  if this_ip is None:
+    this_ip = os.environ.get("ROS_IP")
 
   node_map = {}
   ignored_nodes = set()
